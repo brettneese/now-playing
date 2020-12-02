@@ -2,7 +2,7 @@ const adapters = require("./adapters");
 const bent = require("bent");
 const getJSON = bent("json");
 
-const lib = require("./lib");
+const lib = require("./lib/lib.js");
 
 function getAdapter(nowPlayingUrl) {
   if (nowPlayingUrl.includes("kcrw")) return adapters.kcrw;
@@ -12,11 +12,6 @@ function getAdapter(nowPlayingUrl) {
   return null;
 }
 
-function scrobble(data) {
-  lastfm.track.scrobble({});
-  //scrobble to last.fm
-}
-
 module.exports = async function (context, myTimer) {
   // make api call to HA
   let nowPlayingUrl = "ipr";
@@ -24,5 +19,5 @@ module.exports = async function (context, myTimer) {
   let adapter = getAdapter(nowPlayingUrl);
   let data = adapter.function(await getJSON(adapter.apiUrl));
 
-  scrobble(data);
+  await lib.scrobble(data.nowPlaying);
 };

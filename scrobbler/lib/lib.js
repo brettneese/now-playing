@@ -9,8 +9,6 @@ const API = require("last.fm.api"),
 
 module.exports.getLastFmSessionKey = async function () {
   const response = await api.auth.getMobileSession({});
-
-  console.log(response);
   return response.session.key;
 };
 
