@@ -62,6 +62,8 @@ const adapters = {
     },
     substring: "plaza.one",
     apiUrl: "https://api.plaza.one/status",
+    //originalResponse: data - some data sources are dynamic, ie, return different stuff every time you call them.
+    // the dedupe won't work in these cases, so just don't include them
   },
 };
 
