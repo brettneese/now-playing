@@ -2,10 +2,10 @@ module.exports.ipr = {
   function(data) {
     return {
       nowPlaying: {
-        artist: data.tracklist.results[0].song.artistName,
-        song: data.tracklist.results[0].song.trackName,
-        album: data.tracklist.results[0].collectionName,
-        image: data.tracklist.results[0].imageUrl,
+        artist: data.onNow.song.artistName,
+        song: data.onNow.song.trackName,
+        album: data.onNow.song.collectionName,
+        image: data.onNow.song.imageUrl,
       },
       originalResponse: data,
     };
@@ -14,7 +14,7 @@ module.exports.ipr = {
     "https://api.composer.nprstations.org/v1/widget/51827818e1c8c2244542ab7b/tracks?format=json&limit=1&hide_amazon=false&hide_itunes=false&hide_arkiv=false&share_format=false",
 };
 
-module.exports.ipr.kcrw = {
+module.exports.kcrw = {
   function(data) {
     return {
       nowPlaying: {
@@ -26,8 +26,7 @@ module.exports.ipr.kcrw = {
       originalResponse: data,
     };
   },
-  apiUrl:
-    "https://api.composer.nprstations.org/v1/widget/51827818e1c8c2244542ab7b/tracks?format=json&limit=1&hide_amazon=false&hide_itunes=false&hide_arkiv=false&share_format=false",
+  apiUrl: "https://tracklist-api.kcrw.com/Simulcast",
 };
 
 module.exports.kexp = {
