@@ -58,7 +58,6 @@ const adapters = {
           album: data.playback.artist,
           image: data.playback.artwork_src,
         },
-        originalResponse: data,
       };
     },
     substring: "plaza.one",
