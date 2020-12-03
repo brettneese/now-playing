@@ -10,6 +10,7 @@ function getAdapter(nowPlayingUrl) {
   if (nowPlayingUrl.includes("kcrw")) return adapters.kcrw;
   if (nowPlayingUrl.includes("iowapublicradio.org")) return adapters.ipr;
   if (nowPlayingUrl.includes("kexp")) return adapters.kexp;
+  if (nowPlayingUrl.includes("plaza.one")) return adapters.kexp;
 
   return null;
 }

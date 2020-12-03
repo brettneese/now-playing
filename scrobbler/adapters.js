@@ -44,3 +44,18 @@ module.exports.kexp = {
   },
   apiUrl: "https://api.kexp.org/v2/plays/?limit=1",
 };
+
+module.exports.nightwaveplaza = {
+  function(data) {
+    return {
+      nowPlaying: {
+        artist: data.playback.artist,
+        song: data.playback.title,
+        album: data.playback.artist,
+        image: data.playback.artwork_src,
+      },
+      originalResponse: data,
+    };
+  },
+  apiUrl: "https://api.plaza.one/status",
+};
