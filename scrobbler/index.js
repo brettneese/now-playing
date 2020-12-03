@@ -26,13 +26,11 @@ module.exports = async function (context, myTimer) {
     if (adapter) {
       let data = adapter.function(await getJSON(adapter.apiUrl));
 
-      console.log("now playing data", data);
-
-      if (!(await mongodb.exists(data))) {
-        await mongodb.insert(data);
-        mongodb.db.close();
-
-        await lastfm.scrobble(data.nowPlaying);
+      if (data) {
+        if (!(await mongodb.exists(data))) {
+          await mongodb.insert(data);
+          await lastfm.scrobble(data.nowPlaying);
+        }
       }
     }
   }

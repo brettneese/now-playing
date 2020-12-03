@@ -1,5 +1,6 @@
 module.exports.ipr = {
   function(data) {
+    if (!data.onNow.song) return false;
     return {
       nowPlaying: {
         artist: data.onNow.song.artistName,
