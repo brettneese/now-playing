@@ -68,8 +68,7 @@ const adapters = {
 
 module.exports = function (nowPlayingUrl) {
   for (const key of Object.keys(adapters)) {
-    if (nowPlayingUrl.includes(adapters[key].substring))
-      return adapters[key].function;
+    if (nowPlayingUrl.includes(adapters[key].substring)) return adapters[key];
   }
 };
 
