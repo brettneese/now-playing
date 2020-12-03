@@ -2,7 +2,8 @@ const adapters = require("./adapters");
 const bent = require("bent");
 const getJSON = bent("json");
 
-const lib = require("./lib/lib.js");
+const lastfm = require("./lib/lastfm");
+const homeassistant = require("./lib/homeassistant");
 
 function getAdapter(nowPlayingUrl) {
   if (nowPlayingUrl.includes("kcrw")) return adapters.kcrw;
@@ -14,10 +15,14 @@ function getAdapter(nowPlayingUrl) {
 
 module.exports = async function (context, myTimer) {
   // make api call to HA
-  let nowPlayingUrl = "ipr";
+  let nowPlayingUrl = await homeassistant.nowPlayingUrl();
 
-  let adapter = getAdapter(nowPlayingUrl);
-  let data = adapter.function(await getJSON(adapter.apiUrl));
+  if (nowPlayingUrl) {
+    let adapter = getAdapter(nowPlayingUrl);
 
-  await lib.scrobble(data.nowPlaying);
+    if (adapter) {
+      let data = adapter.function(await getJSON(adapter.apiUrl));
+      await lastfm.scrobble(data.nowPlaying);
+    }
+  }
 };

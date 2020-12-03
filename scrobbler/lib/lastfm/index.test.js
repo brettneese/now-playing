@@ -1,4 +1,4 @@
-const lib = require("./lib");
+const lib = require(".");
 
 test("getLastFmSessionKey()", async () => {
   key = await lib.getLastFmSessionKey();
